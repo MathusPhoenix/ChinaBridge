@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
@@ -139,6 +139,32 @@ def init_db():
         if connection:
             cursor.close()
             connection.close()
+
+# Serve static HTML files
+@app.route('/')
+def index():
+    """Serve homepage"""
+    return send_from_directory('.', 'index.html')
+
+@app.route('/dashboard')
+def dashboard():
+    """Serve student dashboard"""
+    return send_from_directory('.', 'dashboard.html')
+
+@app.route('/admin')
+def admin():
+    """Serve admin panel"""
+    return send_from_directory('.', 'admin.html')
+
+@app.route('/reset-password')
+def reset_password_page():
+    """Serve password reset page"""
+    return send_from_directory('.', 'reset-password.html')
+
+@app.route('/styles.css')
+def styles():
+    """Serve CSS file"""
+    return send_from_directory('.', 'styles.css')
 
 @app.route('/api/register', methods=['POST'])
 def register():
