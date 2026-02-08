@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, send_from_directory
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
@@ -144,27 +144,27 @@ def init_db():
 @app.route('/')
 def index():
     """Serve homepage"""
-    return send_from_directory('.', 'index.html')
+    return send_file(os.path.join(os.path.dirname(__file__), 'index.html'))
 
 @app.route('/dashboard')
 def dashboard():
     """Serve student dashboard"""
-    return send_from_directory('.', 'dashboard.html')
+    return send_file(os.path.join(os.path.dirname(__file__), 'dashboard.html'))
 
 @app.route('/admin')
 def admin():
     """Serve admin panel"""
-    return send_from_directory('.', 'admin.html')
+    return send_file(os.path.join(os.path.dirname(__file__), 'admin.html'))
 
 @app.route('/reset-password')
 def reset_password_page():
     """Serve password reset page"""
-    return send_from_directory('.', 'reset-password.html')
+    return send_file(os.path.join(os.path.dirname(__file__), 'reset-password.html'))
 
 @app.route('/styles.css')
 def styles():
     """Serve CSS file"""
-    return send_from_directory('.', 'styles.css')
+    return send_file(os.path.join(os.path.dirname(__file__), 'styles.css'), mimetype='text/css')
 
 @app.route('/api/register', methods=['POST'])
 def register():
