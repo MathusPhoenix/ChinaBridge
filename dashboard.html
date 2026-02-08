@@ -334,6 +334,56 @@
       const API_BASE_URL = '/api';
       let currentUser = null;
 
+      // Initialize user from localStorage immediately
+      function restoreUserSession() {
+        const savedUser = localStorage.getItem('currentUser');
+        console.log('[Session] Checking for saved user...', savedUser ? 'Found' : 'Not found');
+        
+        if (savedUser) {
+          try {
+            currentUser = JSON.parse(savedUser);
+            console.log('[Session] User restored:', currentUser.email);
+            return true;
+          } catch (e) {
+            console.error('[Session] Failed to parse saved user:', e);
+            localStorage.removeItem('currentUser');
+            return false;
+          }
+        }
+        return false;
+      }
+
+      // Check if logged in before anything else loads
+      function checkAndInitialize() {
+        if (!restoreUserSession()) {
+          console.log('[Session] No user found, redirecting to login');
+          window.location.href = 'index.html';
+          return;
+        }
+        console.log('[Session] User verified, initializing dashboard');
+      }
+
+      // Run immediately on script load
+      checkAndInitialize();
+
+      // Also check on page load as fallback
+      window.addEventListener('load', function() {
+        if (!currentUser) {
+          console.log('[Init] currentUser not set, checking again');
+          checkAndInitialize();
+        } else {
+          initDashboard();
+        }
+      });
+
+      // Auto-restore if currentUser is null but localStorage has data
+      window.addEventListener('focus', function() {
+        if (!currentUser) {
+          console.log('[Focus] Restoring session on window focus');
+          restoreUserSession();
+        }
+      });
+
       // Available courses
       const availableCourses = [
         {
@@ -358,19 +408,6 @@
           tutors: ['Jade']
         }
       ];
-
-      // Check if user is logged in
-      window.addEventListener('load', function() {
-        const savedUser = localStorage.getItem('currentUser');
-        if (!savedUser) {
-          // Redirect to home if not logged in
-          window.location.href = 'index.html';
-          return;
-        }
-
-        currentUser = JSON.parse(savedUser);
-        initDashboard();
-      });
 
       function initDashboard() {
         // Update greeting

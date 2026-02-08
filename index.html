@@ -352,7 +352,13 @@
           
           if (response.ok) {
             currentUser = data;
-            localStorage.setItem('currentUser', JSON.stringify(data));
+            // Save with timestamp for session management
+            const sessionData = {
+              ...data,
+              loginTime: new Date().getTime()
+            };
+            localStorage.setItem('currentUser', JSON.stringify(sessionData));
+            console.log('[Login] User logged in and saved to localStorage:', data.email);
             showSuccessMessage('Login successful! Redirecting to dashboard...');
             setTimeout(() => {
               window.location.href = 'dashboard.html';
@@ -364,6 +370,7 @@
         } catch (error) {
           errorDiv.textContent = 'Error connecting to server: ' + error.message;
           errorDiv.style.display = 'block';
+          console.error('[Login] Error:', error);
         } finally {
           loginBtn.disabled = false;
           loginBtn.textContent = 'Login';
@@ -502,10 +509,17 @@
       window.addEventListener('load', function() {
         const savedUser = localStorage.getItem('currentUser');
         if (savedUser) {
-          currentUser = JSON.parse(savedUser);
-          console.log('User logged in:', currentUser.email);
-          updateNavForLoggedInUser();
-          hideLoginSection();
+          try {
+            currentUser = JSON.parse(savedUser);
+            console.log('[Session] User already logged in:', currentUser.email);
+            updateNavForLoggedInUser();
+            hideLoginSection();
+          } catch (e) {
+            console.error('[Session] Failed to parse saved user:', e);
+            localStorage.removeItem('currentUser');
+          }
+        } else {
+          console.log('[Session] No user logged in');
         }
       });
 
