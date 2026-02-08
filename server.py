@@ -163,23 +163,41 @@ print("Database initialization complete")
 def health():
     """Check if database is initialized"""
     try:
+        db_exists = os.path.exists(DB_PATH)
+        print(f"[HEALTH] Database path: {DB_PATH}")
+        print(f"[HEALTH] Database file exists: {db_exists}")
+        
         connection = get_db_connection()
         if connection is None:
-            return jsonify({'status': 'error', 'message': 'Cannot connect to database'}), 500
+            return jsonify({
+                'status': 'error', 
+                'message': 'Cannot connect to database',
+                'database_path': DB_PATH,
+                'database_file_exists': db_exists
+            }), 500
         
         cursor = connection.cursor()
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='students'")
-        students_table_exists = cursor.fetchone() is not None
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = [row[0] for row in cursor.fetchall()]
+        print(f"[HEALTH] Tables found: {tables}")
+        
+        students_table_exists = 'students' in tables
         cursor.close()
         connection.close()
         
-        return jsonify({
+        response = {
             'status': 'ok',
             'database_path': DB_PATH,
-            'database_file_exists': os.path.exists(DB_PATH),
-            'students_table_exists': students_table_exists
-        }), 200
+            'database_file_exists': db_exists,
+            'students_table_exists': students_table_exists,
+            'all_tables': tables
+        }
+        print(f"[HEALTH] Returning: {response}")
+        return jsonify(response), 200
     except Exception as e:
+        print(f"[HEALTH] Exception: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'status': 'error', 'message': str(e)}), 500
 
 # Serve static HTML files
@@ -198,14 +216,29 @@ def dashboard():
     """Serve student dashboard"""
     return send_file(os.path.join(os.path.dirname(__file__), 'dashboard.html'))
 
+@app.route('/dashboard.html')
+def dashboard_html():
+    """Serve student dashboard explicitly"""
+    return send_file(os.path.join(os.path.dirname(__file__), 'dashboard.html'))
+
 @app.route('/admin')
 def admin():
     """Serve admin panel"""
     return send_file(os.path.join(os.path.dirname(__file__), 'admin.html'))
 
+@app.route('/admin.html')
+def admin_html():
+    """Serve admin panel explicitly"""
+    return send_file(os.path.join(os.path.dirname(__file__), 'admin.html'))
+
 @app.route('/reset-password')
 def reset_password_page():
     """Serve password reset page"""
+    return send_file(os.path.join(os.path.dirname(__file__), 'reset-password.html'))
+
+@app.route('/reset-password.html')
+def reset_password_html():
+    """Serve password reset page explicitly"""
     return send_file(os.path.join(os.path.dirname(__file__), 'reset-password.html'))
 
 @app.route('/styles.css')
