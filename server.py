@@ -25,7 +25,7 @@ EMAIL_CONFIG = {
 }
 
 # SQLite Database Configuration
-DB_PATH = 'chinabridge.db'
+DB_PATH = os.path.join(os.path.dirname(__file__), 'chinabridge.db')
 
 def get_db_connection():
     """Create and return a database connection"""
@@ -140,10 +140,20 @@ def init_db():
             cursor.close()
             connection.close()
 
+# Initialize database on app startup
+print("Initializing database...")
+init_db()
+print("Database initialization complete")
+
 # Serve static HTML files
 @app.route('/')
 def index():
     """Serve homepage"""
+    return send_file(os.path.join(os.path.dirname(__file__), 'index.html'))
+
+@app.route('/index.html')
+def index_html():
+    """Serve homepage explicitly"""
     return send_file(os.path.join(os.path.dirname(__file__), 'index.html'))
 
 @app.route('/dashboard')
@@ -588,8 +598,5 @@ def reset_password():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    # Initialize database on startup
-    init_db()
-    
     # Run Flask app (debug only in development)
     app.run(debug=DEBUG_MODE, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
