@@ -68,7 +68,7 @@ def init_db():
     """Initialize the database and create tables if they don't exist"""
     connection = get_db_connection()
     if connection is None:
-        print("Failed to connect to database")
+        print(f"Failed to connect to database at {DB_PATH}")
         return False
     
     try:
@@ -87,6 +87,7 @@ def init_db():
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
+        print("✓ Students table created")
         
         # Create enrollments table
         cursor.execute("""
@@ -99,6 +100,7 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
+        print("✓ Enrollments table created")
         
         # Create sessions table for tutoring bookings
         cursor.execute("""
@@ -114,6 +116,7 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
+        print("✓ Tutoring sessions table created")
         
         # Create password reset tokens table
         cursor.execute("""
@@ -127,23 +130,57 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
+        print("✓ Password reset tokens table created")
         
         connection.commit()
-        print("Database initialized successfully")
+        cursor.close()
+        connection.close()
+        print(f"✓ Database initialized successfully at {DB_PATH}")
         return True
         
     except sqlite3.Error as e:
-        print(f"Error initializing database: {e}")
-        return False
-    finally:
-        if connection:
+        print(f"✗ Error initializing database: {e}")
+        if cursor:
             cursor.close()
+        if connection:
             connection.close()
+        return False
+    except Exception as e:
+        print(f"✗ Unexpected error during init_db: {e}")
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.close()
+        return False
 
 # Initialize database on app startup
 print("Initializing database...")
 init_db()
 print("Database initialization complete")
+
+# Health check endpoint
+@app.route('/api/health', methods=['GET'])
+def health():
+    """Check if database is initialized"""
+    try:
+        connection = get_db_connection()
+        if connection is None:
+            return jsonify({'status': 'error', 'message': 'Cannot connect to database'}), 500
+        
+        cursor = connection.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='students'")
+        students_table_exists = cursor.fetchone() is not None
+        cursor.close()
+        connection.close()
+        
+        return jsonify({
+            'status': 'ok',
+            'database_path': DB_PATH,
+            'database_file_exists': os.path.exists(DB_PATH),
+            'students_table_exists': students_table_exists
+        }), 200
+    except Exception as e:
+        return jsonify({'status': 'error', 'message': str(e)}), 500
 
 # Serve static HTML files
 @app.route('/')
