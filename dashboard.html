@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard | ChinaBridge Academy</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .dashboard-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 32px;
+      }
+
+      .dashboard-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        padding-bottom: 20px;
+        border-bottom: 2px solid var(--border);
+      }
+
+      .dashboard-header h1 {
+        margin: 0;
+        font-size: 2rem;
+      }
+
+      .logout-btn {
+        background: var(--accent-dark);
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .logout-btn:hover {
+        opacity: 0.9;
+      }
+
+      .user-greeting {
+        margin-bottom: 30px;
+      }
+
+      .user-greeting h2 {
+        color: var(--text-primary);
+        margin-bottom: 10px;
+      }
+
+      .user-greeting p {
+        color: var(--text-secondary);
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+        color: var(--text-primary);
+        margin-top: 40px;
+      }
+
+      .enrollments-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .enrollment-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .enrollment-card h3 {
+        color: var(--text-primary);
+        margin-bottom: 12px;
+      }
+
+      .enrollment-card p {
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+        font-size: 0.95rem;
+      }
+
+      .tutor-name {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+
+      .btn-primary:hover {
+        background: var(--accent-dark);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--surface-muted);
+        border-radius: 12px;
+        color: var(--text-secondary);
+      }
+
+      .empty-state h3 {
+        color: var(--text-primary);
+        margin-bottom: 10px;
+      }
+
+      .available-courses {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .course-card {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .course-card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+
+      .course-card h3 {
+        color: var(--text-primary);
+        margin-bottom: 12px;
+      }
+
+      .course-card p {
+        color: var(--text-secondary);
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+      }
+
+      .course-card ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .course-card li {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .course-card li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-weight: bold;
+      }
+
+      .btn-enroll {
+        background: var(--accent);
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        width: 100%;
+      }
+
+      .btn-enroll:hover {
+        background: var(--accent-dark);
+      }
+
+      .sessions-container {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .session-item {
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .session-item:last-child {
+        border-bottom: none;
+      }
+
+      .session-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+      }
+
+      .session-tutor {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .session-status {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .session-status.scheduled {
+        background: #fee2e2;
+        color: var(--accent);
+      }
+
+      .session-date {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
+      .loading {
+        text-align: center;
+        padding: 40px;
+        color: var(--text-secondary);
+      }
+
+      @media (max-width: 768px) {
+        .dashboard-container {
+          padding: 20px 16px;
+        }
+
+        .dashboard-header {
+          flex-direction: column;
+          gap: 16px;
+          align-items: flex-start;
+        }
+
+        .enrollments-container,
+        .available-courses {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">ChinaBridge</div>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html" style="color: var(--accent);">Dashboard</a>
+          <a href="admin.html">Admin</a>
+        </div>
+        <button class="nav-cta" onclick="logout()">Logout</button>
+      </nav>
+    </header>
+
+    <main>
+      <div class="dashboard-container">
+        <div class="dashboard-header">
+          <div>
+            <h1>Student Dashboard</h1>
+            <p style="color: var(--text-secondary);" id="userEmail"></p>
+          </div>
+        </div>
+
+        <div class="user-greeting">
+          <h2 id="greeting">Welcome!</h2>
+          <p id="subtitle">Manage your courses and tutoring sessions</p>
+        </div>
+
+        <!-- My Enrollments Section -->
+        <div>
+          <h3 class="section-title">My Courses</h3>
+          <div id="enrollmentsContainer" class="enrollments-container">
+            <div class="loading">Loading your courses...</div>
+          </div>
+        </div>
+
+        <!-- Available Courses Section -->
+        <div id="availableCoursesSection" style="display:none;">
+          <h3 class="section-title">Available Courses</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 20px;">Start your learning journey by enrolling in one of our courses:</p>
+          <div class="available-courses" id="availableCoursesContainer">
+            <!-- Courses will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Sessions Section -->
+        <div>
+          <h3 class="section-title">Upcoming Tutoring Sessions</h3>
+          <div id="sessionsContainer" class="sessions-container">
+            <div class="loading">Loading your sessions...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <h3>ChinaBridge Academy</h3>
+        <p>Your personalized learning dashboard</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="admin.html">Admin</a>
+      </div>
+      <p class="copyright">© 2025 ChinaBridge Academy. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const API_BASE_URL = '/api';
+      let currentUser = null;
+
+      // Available courses
+      const availableCourses = [
+        {
+          id: 1,
+          name: 'CSCA Prep',
+          description: 'Master Chinese language, classics, mathematics, physics, and chemistry with expert guidance',
+          features: ['1:1 tutoring sessions', 'Customized study plans', 'Subject experts available'],
+          tutors: ['Phoenix']
+        },
+        {
+          id: 2,
+          name: 'SAT Tutoring',
+          description: 'Strategic SAT preparation with proven techniques to boost your score and college prospects',
+          features: ['Practice test review', 'Targeted skill building', 'Strategy sessions'],
+          tutors: ['Nixon']
+        },
+        {
+          id: 3,
+          name: 'HSK/HSKK & University Prep',
+          description: 'Ace Chinese language proficiency exams and prepare for China\'s university interview process',
+          features: ['HSK levels 1-6 support', 'Speaking & conversation practice', 'Interview coaching'],
+          tutors: ['Jade']
+        }
+      ];
+
+      // Check if user is logged in
+      window.addEventListener('load', function() {
+        const savedUser = localStorage.getItem('currentUser');
+        if (!savedUser) {
+          // Redirect to home if not logged in
+          window.location.href = 'index.html';
+          return;
+        }
+
+        currentUser = JSON.parse(savedUser);
+        initDashboard();
+      });
+
+      function initDashboard() {
+        // Update greeting
+        const firstName = currentUser.first_name || 'User';
+        document.getElementById('greeting').textContent = `Welcome back, ${firstName}!`;
+        document.getElementById('userEmail').textContent = currentUser.email;
+
+        // Load enrollments and sessions
+        loadEnrollments();
+        loadSessions();
+      }
+
+      async function loadEnrollments() {
+        try {
+          const response = await fetch(`${API_BASE_URL}/enrollments/${currentUser.student_id}`);
+          
+          if (response.ok) {
+            const enrollments = await response.json();
+            displayEnrollments(enrollments);
+          } else {
+            // No enrollments endpoint yet, show empty state
+            displayEnrollments([]);
+          }
+        } catch (error) {
+          console.log('No enrollments found, showing available courses');
+          displayEnrollments([]);
+        }
+      }
+
+      function displayEnrollments(enrollments) {
+        const container = document.getElementById('enrollmentsContainer');
+        
+        if (enrollments.length === 0) {
+          container.innerHTML = `
+            <div class="empty-state">
+              <h3>No Courses Yet</h3>
+              <p>Start your learning journey by enrolling in one of our courses below!</p>
+            </div>
+          `;
+          // Show available courses
+          displayAvailableCourses();
+        } else {
+          container.innerHTML = '';
+          enrollments.forEach(enrollment => {
+            const enrollmentCard = document.createElement('div');
+            enrollmentCard.className = 'enrollment-card';
+            enrollmentCard.innerHTML = `
+              <h3>${enrollment.subject}</h3>
+              <p>Tutor: <span class="tutor-name">${enrollment.tutor_name}</span></p>
+              <p>Enrolled: ${new Date(enrollment.enrolled_date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'})}</p>
+              <button class="btn-primary" onclick="bookSession('${enrollment.tutor_name}', '${enrollment.subject}')">
+                Book Session
+              </button>
+            `;
+            container.appendChild(enrollmentCard);
+          });
+        }
+      }
+
+      function displayAvailableCourses() {
+        document.getElementById('availableCoursesSection').style.display = 'block';
+        const container = document.getElementById('availableCoursesContainer');
+        container.innerHTML = '';
+
+        availableCourses.forEach(course => {
+          const courseCard = document.createElement('div');
+          courseCard.className = 'course-card';
+          
+          const featuresList = course.features.map(f => `<li>${f}</li>`).join('');
+          
+          courseCard.innerHTML = `
+            <h3>${course.name}</h3>
+            <p>${course.description}</p>
+            <ul>${featuresList}</ul>
+            <p style="color: var(--accent); font-weight: 600; font-size: 0.9rem;">With: ${course.tutors.join(', ')}</p>
+            <button class="btn-enroll" onclick="enrollCourse('${course.name}', '${course.tutors[0]}')">
+              Enroll Now
+            </button>
+          `;
+          
+          container.appendChild(courseCard);
+        });
+      }
+
+      function enrollCourse(courseSubject, tutorName) {
+        // TODO: Implement enrollment in backend
+        alert(`Enrolled in ${courseSubject} with ${tutorName}!\n\nEnrollment feature coming soon. For now, you can book a direct tutoring session.`);
+      }
+
+      function bookSession(tutorName, subject) {
+        alert(`Booking a session with ${tutorName} for ${subject}.\n\nSession booking feature coming soon!`);
+      }
+
+      async function loadSessions() {
+        try {
+          const response = await fetch(`${API_BASE_URL}/sessions/${currentUser.student_id}`);
+          
+          if (response.ok) {
+            const sessions = await response.json();
+            displaySessions(sessions);
+          } else {
+            displaySessions([]);
+          }
+        } catch (error) {
+          displaySessions([]);
+        }
+      }
+
+      function displaySessions(sessions) {
+        const container = document.getElementById('sessionsContainer');
+        
+        if (sessions.length === 0) {
+          container.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: var(--text-secondary);">
+              <p>No upcoming sessions booked yet.</p>
+              <p style="font-size: 0.9rem; margin-top: 8px;">Book your first tutoring session with one of our expert tutors!</p>
+            </div>
+          `;
+        } else {
+          container.innerHTML = '';
+          sessions.forEach(session => {
+            const sessionDate = new Date(session.date_time).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            });
+            
+            const sessionItem = document.createElement('div');
+            sessionItem.className = 'session-item';
+            sessionItem.innerHTML = `
+              <div class="session-header">
+                <span class="session-tutor">${session.tutor_name}</span>
+                <span class="session-status ${session.status}">${session.status.charAt(0).toUpperCase() + session.status.slice(1)}</span>
+              </div>
+              <div class="session-date">${sessionDate} • ${session.duration_hours} hour(s)</div>
+              ${session.notes ? `<p style="margin-top: 8px; color: var(--text-secondary); font-size: 0.9rem;">${session.notes}</p>` : ''}
+            `;
+            container.appendChild(sessionItem);
+          });
+        }
+      }
+
+      function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+      }
+    </script>
+  </body>
+</html>

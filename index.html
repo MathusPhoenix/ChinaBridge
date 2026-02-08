@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChinaBridge Academy | CSCA, SAT, HSK & University Prep</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <div class="logo">ChinaBridge</div>
+        <div class="nav-links" id="navLinks">
+          <a href="#courses">Courses</a>
+          <a href="#tutors">Tutors</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#loginSection">Login</a>
+        </div>
+        <div id="navLoggedIn" style="display:none;gap:20px;" class="nav-links">
+          <a href="dashboard.html">My Dashboard</a>
+          <a href="admin.html">Admin</a>
+          <a href="#" onclick="logout(event)">Logout</a>
+        </div>
+        <button class="nav-cta">Start learning</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Student-founded tutoring platform</p>
+          <h1>Excel in CSCA, SAT, HSK, HSKK & Chinese University Interviews</h1>
+          <p class="hero-subtitle">
+            ChinaBridge Academy is a student-run platform connecting learners with passionate, high-achieving peer tutors specializing in Chinese, Math, Physics, Chemistry, SAT prep, HSK/HSKK, and China's competitive university admissions process.
+          </p>
+          <div class="hero-actions">
+            <button class="primary">Explore courses</button>
+            <button class="secondary">Become a tutor</button>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <h3>5</h3>
+              <p>expert peer tutors</p>
+            </div>
+            <div>
+              <h3>2</h3>
+              <p>Tsinghua University accepted</p>
+            </div>
+            <div>
+              <h3>1:1</h3>
+              <p>personalized tutoring sessions</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="courses" class="section">
+        <div class="section-heading">
+          <h2>Personalized 1:1 tutoring with proven results</h2>
+          <p>
+            Connect directly with our expert peer tutors for customized learning experiences. Our tutors specialize in helping students master challenging subjects and prepare for crucial exams.
+          </p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>CSCA Prep</h3>
+            <p>Master Chinese language, classics, mathematics, physics, and chemistry with expert guidance tailored to your needs.</p>
+            <ul>
+              <li>1:1 tutoring sessions</li>
+              <li>Customized study plans</li>
+              <li>Subject experts available</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>SAT Tutoring</h3>
+            <p>Strategic SAT preparation with proven techniques to boost your score and college prospects.</p>
+            <ul>
+              <li>Practice test review</li>
+              <li>Targeted skill building</li>
+              <li>Strategy sessions</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>HSK/HSKK & University Prep</h3>
+            <p>Ace Chinese language proficiency exams and prepare for China's university interview process.</p>
+            <ul>
+              <li>HSK levels 1-6 support</li>
+              <li>Speaking & conversation practice</li>
+              <li>Interview coaching</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section highlight">
+        <div class="highlight-content">
+          <h2>Learn from high-achieving peer tutors</h2>
+          <p>
+            Our tutors aren't just educators—they're successful students who have navigated and excelled in the exact paths you're pursuing. Get guidance from people who have been where you are and achieved your goals.
+          </p>
+          <div class="highlight-list">
+            <div>
+              <h4>Proven Success</h4>
+              <p>Two tutors accepted to Tsinghua University. Learn from students achieving excellence in the most competitive admissions processes.</p>
+            </div>
+            <div>
+              <h4>Personalized Approach</h4>
+              <p>Small group of tutors means you get genuine, customized attention and mentorship tailored to your specific challenges.</p>
+            </div>
+            <div>
+              <h4>Recent Experience</h4>
+              <p>Our tutors recently completed the same exams and processes you're preparing for, giving them fresh, practical insights.</p>
+            </div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <h3>Our Growing Community</h3>
+          <div class="metric">
+            <span>Expert Tutors</span>
+            <strong>5</strong>
+          </div>
+          <div class="metric">
+            <span>Top Acceptance</span>
+            <strong>Tsinghua</strong>
+          </div>
+          <div class="metric">
+            <span>Founded</span>
+            <strong>2025</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="tutors" class="section">
+        <div class="section-heading">
+          <h2>Meet our passionate peer tutors</h2>
+          <p>High-achieving students who excel at the subjects and exams you're preparing for.</p>
+        </div>
+        <div class="grid three">
+          <article class="profile">
+            <h3>Phoenix</h3>
+            <p>CSCA & University Interviews • Tsinghua Accepted</p>
+            <div class="profile-meta">
+              <span>★★★★★</span>
+              <span>Expert tutor</span>
+            </div>
+            <button>Book tutoring</button>
+          </article>
+          <article class="profile">
+            <h3>Nixon</h3>
+            <p>Math, Physics & SAT • Tsinghua Accepted</p>
+            <div class="profile-meta">
+              <span>★★★★★</span>
+              <span>Expert tutor</span>
+            </div>
+            <button>Book tutoring</button>
+          </article>
+          <article class="profile">
+            <h3>Serum</h3>
+            <p>HSK/HSKK & Chinese Language</p>
+            <div class="profile-meta">
+              <span>★★★★★</span>
+              <span>Expert tutor</span>
+            </div>
+            <button>Book tutoring</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="pricing" class="section">
+        <div class="section-heading">
+          <h2>Simple, transparent pricing</h2>
+          <p>Book 1:1 tutoring sessions with our expert peer tutors at affordable rates.</p>
+        </div>
+        <div class="grid three">
+          <article class="pricing-card">
+            <h3>Pay As You Go</h3>
+            <p class="price">$25<span>/hour</span></p>
+            <ul>
+              <li>Single tutoring session</li>
+              <li>Any subject</li>
+              <li>Schedule at your convenience</li>
+            </ul>
+            <button>Book now</button>
+          </article>
+          <article class="pricing-card featured">
+            <div class="badge">Best value</div>
+            <h3>Session Bundle</h3>
+            <p class="price">$22<span>/hour</span></p>
+            <ul>
+              <li>5 tutoring sessions</li>
+              <li>Use within 3 months</li>
+              <li>10% savings</li>
+            </ul>
+            <button>Buy bundle</button>
+          </article>
+          <article class="pricing-card">
+            <h3>Monthly Plan</h3>
+            <p class="price">$80<span>/month</span></p>
+            <ul>
+              <li>4 sessions per month</li>
+              <li>Priority scheduling</li>
+              <li>Dedicated tutor</li>
+            </ul>
+            <button>Start today</button>
+          </article>
+        </div>
+      </section>
+
+      <section id="loginSection" class="section cta">
+        <div class="cta-content">
+          <h2>Start your learning journey today</h2>
+          <p>
+            Create your free account to access courses, schedule tutoring sessions, and track your progress toward academic excellence.
+          </p>
+        </div>
+        
+        <div class="auth-container">
+          <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">Login</button>
+            <button class="auth-tab" data-tab="register">Sign Up</button>
+          </div>
+          
+          <form id="loginForm" class="cta-form auth-form active">
+            <h3>Login to your account</h3>
+            <div id="loginError" class="error-message" style="display:none;"></div>
+            <label>
+              Email address
+              <input type="email" id="loginEmail" placeholder="you@email.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="loginPassword" placeholder="Enter your password" required />
+            </label>
+            <button type="submit" id="loginBtn">Login</button>
+            <small>Forgot password? <a href="#" onclick="showForgotPasswordForm(event)">Reset it here</a></small>
+          </form>
+          
+          <form id="registerForm" class="cta-form auth-form" style="display:none;">
+            <h3>Create your account</h3>
+            <div id="registerError" class="error-message" style="display:none;"></div>
+            <label>
+              First Name
+              <input type="text" id="firstName" placeholder="First name" />
+            </label>
+            <label>
+              Last Name
+              <input type="text" id="lastName" placeholder="Last name" />
+            </label>
+            <label>
+              Email address
+              <input type="email" id="regEmail" placeholder="you@email.com" required />
+            </label>
+            <label>
+              Password
+              <input type="password" id="regPassword" placeholder="Create a password (min 6 characters)" required />
+            </label>
+            <label>
+              Confirm Password
+              <input type="password" id="confirmPassword" placeholder="Confirm password" required />
+            </label>
+            <button type="submit" id="registerBtn">Create Account</button>
+            <small>By signing up, you agree to our Terms & Privacy Policy.</small>
+          </form>
+          
+          <form id="forgotPasswordForm" class="cta-form auth-form" style="display:none;">
+            <h3>Reset your password</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 16px; font-size: 0.9rem;">
+              Enter your email address and we'll send you a link to reset your password.
+            </p>
+            <div id="forgotError" class="error-message" style="display:none;"></div>
+            <label>
+              Email address
+              <input type="email" id="forgotEmail" placeholder="you@email.com" required />
+            </label>
+            <button type="submit" id="forgotBtn">Send Reset Link</button>
+            <small><a href="#" onclick="backToLogin(event)" style="color: var(--accent); cursor: pointer;">Back to Login</a></small>
+          </form>
+          
+          <div id="successMessage" class="success-message" style="display:none;"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <h3>ChinaBridge Academy</h3>
+        <p>Student-founded tutoring platform connecting learners with high-achieving peer mentors.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#courses">Tutoring</a>
+        <a href="#tutors">Our Tutors</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#loginSection">Login</a>
+      </div>
+      <p class="copyright">© 2025 ChinaBridge Academy. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // API Configuration
+      const API_BASE_URL = '/api';
+      let currentUser = null;
+
+      // Tab switching functionality
+      document.querySelectorAll('.auth-tab').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          e.preventDefault();
+          const tabName = this.getAttribute('data-tab');
+          
+          // Update active tab
+          document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Update active form
+          document.querySelectorAll('.auth-form').forEach(form => form.style.display = 'none');
+          if (tabName === 'login') {
+            document.getElementById('loginForm').style.display = 'block';
+          } else {
+            document.getElementById('registerForm').style.display = 'block';
+          }
+        });
+      });
+
+      // Login Form Handler
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        const errorDiv = document.getElementById('loginError');
+        const loginBtn = document.getElementById('loginBtn');
+        
+        errorDiv.style.display = 'none';
+        loginBtn.disabled = true;
+        loginBtn.textContent = 'Logging in...';
+        
+        try {
+          const response = await fetch(`${API_BASE_URL}/login`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, password })
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            currentUser = data;
+            localStorage.setItem('currentUser', JSON.stringify(data));
+            showSuccessMessage('Login successful! Redirecting to dashboard...');
+            setTimeout(() => {
+              window.location.href = 'dashboard.html';
+            }, 1500);
+          } else {
+            errorDiv.textContent = data.error || 'Login failed';
+            errorDiv.style.display = 'block';
+          }
+        } catch (error) {
+          errorDiv.textContent = 'Error connecting to server: ' + error.message;
+          errorDiv.style.display = 'block';
+        } finally {
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Login';
+        }
+      });
+
+      // Register Form Handler
+      document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const errorDiv = document.getElementById('registerError');
+        const registerBtn = document.getElementById('registerBtn');
+        
+        errorDiv.style.display = 'none';
+        
+        // Validation
+        if (password !== confirmPassword) {
+          errorDiv.textContent = 'Passwords do not match';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        
+        if (password.length < 6) {
+          errorDiv.textContent = 'Password must be at least 6 characters';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        
+        registerBtn.disabled = true;
+        registerBtn.textContent = 'Creating account...';
+        
+        try {
+          const response = await fetch(`${API_BASE_URL}/register`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email,
+              password,
+              first_name: firstName,
+              last_name: lastName
+            })
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            showSuccessMessage('Account created successfully! Switching to login...');
+            setTimeout(() => {
+              document.getElementById('registerForm').reset();
+              document.querySelectorAll('.auth-tab')[0].click();
+            }, 2000);
+          } else {
+            errorDiv.textContent = data.error || 'Registration failed';
+            errorDiv.style.display = 'block';
+          }
+        } catch (error) {
+          errorDiv.textContent = 'Error connecting to server: ' + error.message;
+          errorDiv.style.display = 'block';
+        } finally {
+          registerBtn.disabled = false;
+          registerBtn.textContent = 'Create Account';
+        }
+      });
+
+      // Forgot Password Form Handler
+      document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('forgotEmail').value;
+        const errorDiv = document.getElementById('forgotError');
+        const forgotBtn = document.getElementById('forgotBtn');
+        
+        errorDiv.style.display = 'none';
+        forgotBtn.disabled = true;
+        forgotBtn.textContent = 'Sending...';
+        
+        try {
+          const response = await fetch(`${API_BASE_URL}/forgot-password`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email })
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            showSuccessMessage('Reset link sent! Check your email for instructions.');
+            setTimeout(() => {
+              document.getElementById('forgotPasswordForm').reset();
+              document.querySelectorAll('.auth-tab')[0].click();
+            }, 2000);
+          } else {
+            errorDiv.textContent = data.error || 'Failed to send reset link';
+            errorDiv.style.display = 'block';
+          }
+        } catch (error) {
+          errorDiv.textContent = 'Error connecting to server: ' + error.message;
+          errorDiv.style.display = 'block';
+        } finally {
+          forgotBtn.disabled = false;
+          forgotBtn.textContent = 'Send Reset Link';
+        }
+      });
+
+      function showForgotPasswordForm(e) {
+        e.preventDefault();
+        document.querySelectorAll('.auth-form').forEach(form => form.style.display = 'none');
+        document.getElementById('forgotPasswordForm').style.display = 'block';
+      }
+
+      function backToLogin(e) {
+        e.preventDefault();
+        document.querySelectorAll('.auth-form').forEach(form => form.style.display = 'none');
+        document.getElementById('loginForm').style.display = 'block';
+      }
+
+      function showSuccessMessage(message) {
+        const successDiv = document.getElementById('successMessage');
+        successDiv.textContent = message;
+        successDiv.style.display = 'block';
+        setTimeout(() => {
+          successDiv.style.display = 'none';
+        }, 4000);
+      }
+
+      // Check if user is logged in on page load
+      window.addEventListener('load', function() {
+        const savedUser = localStorage.getItem('currentUser');
+        if (savedUser) {
+          currentUser = JSON.parse(savedUser);
+          console.log('User logged in:', currentUser.email);
+          updateNavForLoggedInUser();
+          hideLoginSection();
+        }
+      });
+
+      function updateNavForLoggedInUser() {
+        // Hide login nav and show logged-in nav
+        document.getElementById('navLinks').style.display = 'none';
+        document.getElementById('navLoggedIn').style.display = 'flex';
+      }
+
+      function hideLoginSection() {
+        // Hide the login/register section when user is already logged in
+        const loginSection = document.getElementById('loginSection');
+        if (loginSection) {
+          loginSection.style.display = 'none';
+        }
+      }
+
+      function logout(e) {
+        e.preventDefault();
+        localStorage.removeItem('currentUser');
+        window.location.href = 'index.html';
+      }
+    </script>
+  </body>
+</html>
