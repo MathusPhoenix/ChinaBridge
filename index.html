@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,42 +11,66 @@
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script src="translations.js"></script>
+    <style>
+      .language-switcher {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-left: 12px;
+        transition: opacity 0.2s;
+      }
+      .language-switcher:hover {
+        opacity: 0.9;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
       <nav class="nav">
         <div class="logo">ChinaBridge</div>
         <div class="nav-links" id="navLinks">
-          <a href="#courses">Courses</a>
-          <a href="#tutors">Tutors</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#loginSection">Login</a>
+          <a href="#courses" data-i18n="nav_courses">Courses</a>
+          <a href="#tutors" data-i18n="nav_tutors">Tutors</a>
+          <a href="#pricing" data-i18n="nav_pricing">Pricing</a>
+          <a href="#loginSection" data-i18n="nav_login">Login</a>
         </div>
         <div id="navLoggedIn" style="display:none;gap:20px;" class="nav-links">
-          <a href="dashboard.html">My Dashboard</a>
-          <a href="admin.html">Admin</a>
-          <a href="#" onclick="logout(event)">Logout</a>
+          <a href="dashboard.html" data-i18n="nav_dashboard">My Dashboard</a>
+          <a href="admin.html" data-i18n="nav_admin">Admin</a>
+          <a href="#" onclick="logout(event)" data-i18n="nav_logout">Logout</a>
         </div>
-        <button class="nav-cta">Start learning</button>
+        <button class="nav-cta" data-i18n="nav_start_learning">Start learning</button>
+        <button class="language-switcher" id="languageSwitcher" onclick="toggleLanguage()">English</button>
       </nav>
     </header>
 
     <main>
       <section class="hero">
         <div class="hero-content">
-          <p class="eyebrow">Student-founded tutoring platform</p>
-          <h1>Excel in CSCA, SAT, HSK, HSKK & Chinese University Interviews</h1>
-          <p class="hero-subtitle">
+          <p class="eyebrow" data-i18n="hero_eyebrow">Student-founded tutoring platform</p>
+          <h1 data-i18n="hero_title">Excel in CSCA, SAT, HSK, HSKK & Chinese University Interviews</h1>
+          <p class="hero-subtitle" data-i18n="hero_subtitle">
             ChinaBridge Academy is a student-run platform connecting learners with passionate, high-achieving peer tutors specializing in Chinese, Math, Physics, Chemistry, SAT prep, HSK/HSKK, and China's competitive university admissions process.
           </p>
           <div class="hero-actions">
-            <button class="primary">Explore courses</button>
-            <button class="secondary">Become a tutor</button>
+            <button class="primary" data-i18n="hero_explore">Explore courses</button>
+            <button class="secondary" data-i18n="hero_become_tutor">Become a tutor</button>
           </div>
           <div class="hero-stats">
             <div>
               <h3>5</h3>
-              <p>expert peer tutors</p>
+              <p data-i18n="hero_experts">expert peer tutors</p>
             </div>
             <div>
               <h3>2</h3>
@@ -541,6 +565,10 @@
         e.preventDefault();
         localStorage.removeItem('currentUser');
         window.location.href = 'index.html';
+      }
+
+      function toggleLanguage() {
+        setLanguage(currentLanguage === 'th' ? 'en' : 'th');
       }
     </script>
   </body>

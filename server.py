@@ -298,6 +298,15 @@ def styles():
     except Exception as e:
         return jsonify({'error': f'Failed to load styles.css: {str(e)}'}), 500
 
+@app.route('/translations.js')
+def translations():
+    """Serve translations file"""
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'translations.js'), 'r') as f:
+            return f.read(), 200, {'Content-Type': 'application/javascript'}
+    except Exception as e:
+        return jsonify({'error': f'Failed to load translations.js: {str(e)}'}), 500
+
 @app.route('/api/register', methods=['POST'])
 def register():
     """Register a new student"""
