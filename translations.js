@@ -150,6 +150,26 @@ const translations = {
     footer_copyright: '© 2025 ChinaBridge Academy. สงวนลิขสิทธิ์',
     footer_quick_links: 'ลิงก์ด่วน',
     footer_contact: 'ติดต่อเรา',
+
+    // ===== Highlights Section =====
+    highlight_title: 'เรียนรู้จากครูสอนเพื่อนที่มีผลสัมฤทธิ์สูง',
+    highlight_subtitle: 'ครูสอนของเราไม่ใช่แค่ผู้สอนเท่านั้น พวกเขาเป็นนักเรียนที่ประสบความสำเร็จและได้ลุยไปในเส้นทางที่คุณกำลังติดตาม',
+    
+    proven_success: 'ความสำเร็จที่พิสูจน์แล้ว',
+    proven_desc: 'ครูสอนสองคนได้รับการยอมรับจากมหาวิทยาลัยธุงหัว เรียนรู้จากนักเรียนที่บรรลุความเป็นเลิศในกระบวนการรับสมัครที่แข่งขันที่สุด',
+    
+    personalized_approach: 'วิธีการแบบส่วนตัว',
+    personalized_desc: 'กลุ่มครูสอนขนาดเล็กหมายความว่าคุณได้รับความสนใจและการสอนที่แท้จริงและกำหนดเอง ซึ่งปรับแต่งให้เหมาะกับความท้าทายที่เฉพาะเจาะจงของคุณ',
+    
+    recent_experience: 'ประสบการณ์ล่าสุด',
+    recent_desc: 'ครูสอนของเราเพิ่งเสร็จสิ้นการสอบและกระบวนการเดียวกันที่คุณกำลังเตรียมตัว ซึ่งให้ความเข้าใจที่ใหม่สดและเชิงปฏิบัติ',
+    
+    // ===== Community Section =====
+    community_title: 'ชุมชนที่เติบโตขึ้นของเรา',
+    
+    // ===== Tutor Profiles =====
+    book_tutoring: 'จองการติวเตอร์',
+    expert_tutor: 'ครูสอนผู้เชี่ยวชาญ',
   },
 
   en: {
@@ -287,6 +307,26 @@ const translations = {
     footer_copyright: '© 2025 ChinaBridge Academy. All rights reserved.',
     footer_quick_links: 'Quick Links',
     footer_contact: 'Contact Us',
+
+    // ===== Highlights Section =====
+    highlight_title: 'Learn from high-achieving peer tutors',
+    highlight_subtitle: 'Our tutors aren\'t just educators—they\'re successful students who have navigated and excelled in the exact paths you\'re pursuing.',
+    
+    proven_success: 'Proven Success',
+    proven_desc: 'Two tutors accepted to Tsinghua University. Learn from students achieving excellence in the most competitive admissions processes.',
+    
+    personalized_approach: 'Personalized Approach',
+    personalized_desc: 'Small group of tutors means you get genuine, customized attention and mentorship tailored to your specific challenges.',
+    
+    recent_experience: 'Recent Experience',
+    recent_desc: 'Our tutors recently completed the same exams and processes you\'re preparing for, giving them fresh, practical insights.',
+    
+    // ===== Community Section =====
+    community_title: 'Our Growing Community',
+    
+    // ===== Tutor Profiles =====
+    book_tutoring: 'Book tutoring',
+    expert_tutor: 'Expert tutor',
   }
 };
 
@@ -327,9 +367,8 @@ function initializeLanguage() {
   updatePageLanguage();
 }
 
-// Call this when page loads
+// Call immediately and also on DOMContentLoaded to handle all timing scenarios
+initializeLanguage();
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initializeLanguage);
-} else {
-  initializeLanguage();
 }
