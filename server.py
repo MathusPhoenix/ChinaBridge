@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
@@ -74,6 +74,14 @@ def init_db():
     try:
         cursor = connection.cursor()
         
+        # Check if students table already exists to avoid redundant operations
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='students'")
+        if cursor.fetchone():
+            print("✓ Database tables already exist")
+            cursor.close()
+            connection.close()
+            return True
+        
         # Create students table
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS students (
@@ -87,7 +95,6 @@ def init_db():
                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
-        print("✓ Students table created")
         
         # Create enrollments table
         cursor.execute("""
@@ -100,7 +107,6 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
-        print("✓ Enrollments table created")
         
         # Create sessions table for tutoring bookings
         cursor.execute("""
@@ -116,7 +122,6 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
-        print("✓ Tutoring sessions table created")
         
         # Create password reset tokens table
         cursor.execute("""
@@ -130,12 +135,11 @@ def init_db():
                 FOREIGN KEY (student_id) REFERENCES students(id)
             )
         """)
-        print("✓ Password reset tokens table created")
         
         connection.commit()
         cursor.close()
         connection.close()
-        print(f"✓ Database initialized successfully at {DB_PATH}")
+        print("✓ Database tables created")
         return True
         
     except sqlite3.Error as e:
@@ -154,11 +158,23 @@ def init_db():
         return False
 
 # Initialize database on app startup
-print("Initializing database...")
+print("=" * 60)
+print("⚡ ChinaBridge Server Starting...")
+print(f"📁 Database: {DB_PATH}")
+print("=" * 60)
+
+init_start = datetime.now()
 init_db()
-print("Database initialization complete")
+init_end = datetime.now()
+print(f"✓ Database initialized in {(init_end - init_start).total_seconds():.2f}s")
+print("=" * 60)
 
 # Health check endpoint
+@app.route('/ping', methods=['GET'])
+def ping():
+    """Simple ping endpoint for keep-alive monitoring"""
+    return jsonify({'status': 'pong', 'timestamp': datetime.now().isoformat()}), 200
+
 @app.route('/api/health', methods=['GET'])
 def health():
     """Check if database is initialized"""
@@ -204,47 +220,83 @@ def health():
 @app.route('/')
 def index():
     """Serve homepage"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'index.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'index.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load index.html: {str(e)}'}), 500
 
 @app.route('/index.html')
 def index_html():
     """Serve homepage explicitly"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'index.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'index.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load index.html: {str(e)}'}), 500
 
 @app.route('/dashboard')
 def dashboard():
     """Serve student dashboard"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'dashboard.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'dashboard.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load dashboard.html: {str(e)}'}), 500
 
 @app.route('/dashboard.html')
 def dashboard_html():
     """Serve student dashboard explicitly"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'dashboard.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'dashboard.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load dashboard.html: {str(e)}'}), 500
 
 @app.route('/admin')
 def admin():
     """Serve admin panel"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'admin.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'admin.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load admin.html: {str(e)}'}), 500
 
 @app.route('/admin.html')
 def admin_html():
     """Serve admin panel explicitly"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'admin.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'admin.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load admin.html: {str(e)}'}), 500
 
 @app.route('/reset-password')
 def reset_password_page():
     """Serve password reset page"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'reset-password.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'reset-password.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load reset-password.html: {str(e)}'}), 500
 
 @app.route('/reset-password.html')
 def reset_password_html():
     """Serve password reset page explicitly"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'reset-password.html'))
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'reset-password.html'), 'r') as f:
+            return f.read()
+    except Exception as e:
+        return jsonify({'error': f'Failed to load reset-password.html: {str(e)}'}), 500
 
 @app.route('/styles.css')
 def styles():
     """Serve CSS file"""
-    return send_file(os.path.join(os.path.dirname(__file__), 'styles.css'), mimetype='text/css')
+    try:
+        with open(os.path.join(os.path.dirname(__file__), 'styles.css'), 'r') as f:
+            return f.read(), 200, {'Content-Type': 'text/css'}
+    except Exception as e:
+        return jsonify({'error': f'Failed to load styles.css: {str(e)}'}), 500
 
 @app.route('/api/register', methods=['POST'])
 def register():
