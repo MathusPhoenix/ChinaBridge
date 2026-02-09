@@ -730,4 +730,6 @@ def reset_password():
 
 if __name__ == '__main__':
     # Run Flask app (debug only in development)
-    app.run(debug=DEBUG_MODE, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    # Fly.io uses PORT env var (default 8080), local development uses 5000
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=DEBUG_MODE, host='0.0.0.0', port=port)
