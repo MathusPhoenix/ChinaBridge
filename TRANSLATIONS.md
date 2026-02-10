@@ -62,10 +62,8 @@ th: {
 - `tutors_subtitle` - Tutors section subtitle
 - `tutor_phoenix` - Phoenix's name
 - `tutor_phoenix_desc` - Phoenix's description
-- `tutor_nixon` - Nixon's name
-- `tutor_nixon_desc` - Nixon's description
-- `tutor_jade` - Jade's name
-- `tutor_jade_desc` - Jade's description
+- `tutor_serum` - Serum's name
+- `tutor_serum_desc` - Serum's description
 
 ### Pricing Section
 - `pricing_title` - "Pricing Plans" heading

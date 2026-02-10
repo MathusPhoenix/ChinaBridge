@@ -67,11 +67,8 @@ const translations = {
     tutor_phoenix: 'ฟีนิกซ์',
     tutor_phoenix_desc: 'ผู้เชี่ยวชาญด้าน CSCA - ภาษาจีน คลาสสิก คณิตศาสตร์ ฟิสิกส์ และเคมี',
     
-    tutor_nixon: 'นิกสัน',
-    tutor_nixon_desc: 'ผู้ติวเตอร์ SAT - ช่วยให้นักเรียนเพิ่มคะแนนและเข้าวิทยาลัยชั้นนำ',
-    
-    tutor_jade: 'เจด',
-    tutor_jade_desc: 'ผู้เชี่ยวชาญด้าน HSK/HSKK - เตรียมความพร้อมสำหรับการสัมภาษณ์มหาวิทยาลัย',
+    tutor_serum: 'เซรั่ม',
+    tutor_serum_desc: 'ผู้เชี่ยวชาญด้าน IELTS - ช่วยให้นักเรียนประสบความสำเร็จในการสอบความสามารถภาษาอังกฤษ',
 
     // ===== Pricing Section =====
     pricing_title: 'แผนราคา',
@@ -224,11 +221,8 @@ const translations = {
     tutor_phoenix: 'Phoenix',
     tutor_phoenix_desc: 'CSCA Expert - Chinese, Classics, Math, Physics, and Chemistry',
     
-    tutor_nixon: 'Nixon',
-    tutor_nixon_desc: 'SAT Tutor - Helping students boost scores and get into top colleges',
-    
-    tutor_jade: 'Jade',
-    tutor_jade_desc: 'HSK/HSKK Expert - Preparing students for university interviews',
+    tutor_serum: 'Serum',
+    tutor_serum_desc: 'IELTS Expert - Helping students ace English proficiency exams',
 
     // ===== Pricing Section =====
     pricing_title: 'Pricing Plans',
