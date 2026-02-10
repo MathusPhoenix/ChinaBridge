@@ -167,6 +167,12 @@ const translations = {
     // ===== Tutor Profiles =====
     book_tutoring: 'จองการติวเตอร์',
     expert_tutor: 'ครูสอนผู้เชี่ยวชาญ',
+
+    // ===== Video Promotion =====
+    promo_title: 'ดูครูสอนของเราในการสอน',
+    promo_desc: 'ดูตัวอย่างจริงจากคร สอนผู้เชี่ยวชาญของเรา รับตัวอย่างคุณภาพของการสอนที่คุณจะได้รับ',
+    videos_section_title: 'วิดีโอการสอน',
+    videos_loading: 'กำลังโหลดวิดีโอ...',
   },
 
   en: {
@@ -321,6 +327,12 @@ const translations = {
     // ===== Tutor Profiles =====
     book_tutoring: 'Book tutoring',
     expert_tutor: 'Expert tutor',
+
+    // ===== Video Promotion =====
+    promo_title: 'Watch Our Teachers in Action',
+    promo_desc: 'See real examples of our expert tutors teaching. Get a preview of the quality instruction you\'ll receive.',
+    videos_section_title: 'Teaching Videos',
+    videos_loading: 'Loading videos...',
   }
 };
 

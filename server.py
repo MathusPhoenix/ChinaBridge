@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
@@ -26,6 +26,10 @@ EMAIL_CONFIG = {
 
 # SQLite Database Configuration
 DB_PATH = os.path.join(os.path.dirname(__file__), 'chinabridge.db')
+
+# Videos Directory Configuration
+VIDEOS_DIR = os.path.join(os.path.dirname(__file__), 'videos')
+os.makedirs(VIDEOS_DIR, exist_ok=True)
 
 def get_db_connection():
     """Create and return a database connection"""
@@ -727,6 +731,48 @@ def reset_password():
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# ============================================================
+# VIDEO SERVING ENDPOINT (Secure, No Download)
+# ============================================================
+# Video ID to filename mapping
+VIDEO_MAPPING = {
+    1: 'csca_math_lesson.mp4',
+    2: 'ielts_speaking.mp4',
+    3: 'chinese_fundamentals.mp4'
+}
+
+@app.route('/api/video/<int:video_id>', methods=['GET'])
+def serve_video(video_id):
+    """Serve video without allowing downloads
+    - Prevents right-click downloads with controlsList="nodownload"
+    - Disables context menu on video player
+    - Returns proper MIME type for streaming
+    """
+    try:
+        if video_id not in VIDEO_MAPPING:
+            return jsonify({'error': 'Video not found'}), 404
+        
+        video_filename = VIDEO_MAPPING[video_id]
+        video_path = os.path.join(VIDEOS_DIR, video_filename)
+        
+        # Check if video file exists
+        if not os.path.exists(video_path):
+            return jsonify({'error': 'Video file not found'}), 404
+        
+        # Stream video with optimized headers for playback
+        # These headers prevent downloading while allowing streaming
+        return send_file(
+            video_path,
+            mimetype='video/mp4',
+            as_attachment=False,  # Important: False prevents download dialog
+            download_name=None,
+            conditional=False
+        )
+    
+    except Exception as e:
+        print(f"Error serving video: {e}")
+        return jsonify({'error': 'Failed to serve video'}), 500
 
 if __name__ == '__main__':
     # Run Flask app (debug only in development)

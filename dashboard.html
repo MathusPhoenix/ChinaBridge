@@ -263,6 +263,79 @@
         color: var(--text-secondary);
       }
 
+      .promo-banner {
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .promo-banner h2 {
+        margin: 0 0 10px 0;
+        font-size: 1.8rem;
+      }
+
+      .promo-banner p {
+        margin: 0 0 20px 0;
+        font-size: 1rem;
+        opacity: 0.95;
+      }
+
+      .videos-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .video-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+      }
+
+      .video-card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+      }
+
+      .video-wrapper {
+        position: relative;
+        background: #000;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+      }
+
+      .video-wrapper video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .video-info {
+        padding: 16px;
+      }
+
+      .video-info h3 {
+        margin: 0 0 8px 0;
+        color: var(--text-primary);
+      }
+
+      .video-info p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+
       @media (max-width: 768px) {
         .dashboard-container {
           padding: 20px 16px;
@@ -307,6 +380,19 @@
         <div class="user-greeting">
           <h2 id="greeting">Welcome!</h2>
           <p id="subtitle">Manage your courses and tutoring sessions</p>
+        </div>
+
+        <!-- Video Promotion Section -->
+        <div class="promo-banner">
+          <h2 data-i18n="promo_title">Watch Our Teachers in Action</h2>
+          <p data-i18n="promo_desc">See real examples of our expert tutors teaching. Get a preview of the quality instruction you'll receive.</p>
+        </div>
+
+        <div>
+          <h3 class="section-title" data-i18n="videos_section_title">Teaching Videos</h3>
+          <div id="videosContainer" class="videos-container">
+            <div class="loading" data-i18n="videos_loading">Loading videos...</div>
+          </div>
         </div>
 
         <!-- My Enrollments Section -->
@@ -403,6 +489,13 @@
         }
       });
 
+      // Sample teaching videos data
+      const teachingVideos = [
+        { id: 1, title: 'CSCA Math Lesson', tutor: 'Phoenix', description: 'Introduction to advanced mathematics concepts' },
+        { id: 2, title: 'IELTS Speaking Practice', tutor: 'Serum', description: 'Tips and techniques for IELTS speaking exam' },
+        { id: 3, title: 'Chinese Language Fundamentals', tutor: 'Phoenix', description: 'Basic Chinese language structure and grammar' }
+      ];
+
       // Available courses
       const availableCourses = [
         {
@@ -427,9 +520,34 @@
         document.getElementById('greeting').textContent = `Welcome back, ${firstName}!`;
         document.getElementById('userEmail').textContent = currentUser.email;
 
-        // Load enrollments and sessions
+        // Load sections
+        displayVideos();
         loadEnrollments();
         loadSessions();
+      }
+
+      function displayVideos() {
+        const container = document.getElementById('videosContainer');
+        container.innerHTML = '';
+
+        teachingVideos.forEach(video => {
+          const videoCard = document.createElement('div');
+          videoCard.className = 'video-card';
+          videoCard.innerHTML = `
+            <div class="video-wrapper">
+              <video controls controlsList="nodownload" oncontextmenu="return false;">
+                <source src="/api/video/${video.id}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="video-info">
+              <h3>${video.title}</h3>
+              <p><strong>Tutor:</strong> ${video.tutor}</p>
+              <p>${video.description}</p>
+            </div>
+          `;
+          container.appendChild(videoCard);
+        });
       }
 
       async function loadEnrollments() {
