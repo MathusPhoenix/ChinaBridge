@@ -53,9 +53,7 @@ const translations = {
     features_tutoring: 'เซสชั่นติวเตอร์ 1:1',
     features_custom: 'แผนการเรียนแบบกำหนดเอง',
     features_experts: 'ผู้เชี่ยวชาญในวิชาเรียน',
-    features_practice: 'การทบทวนแบบทดสอบ',
-    features_skill: 'การฝึกทักษะเป้าหมาย',
-    features_strategy: 'เซสชั่นยุทธศาสตร์',
+    
     features_hsk: 'การสนับสนุน HSK ระดับ 1-6',
     features_speaking: 'การฝึกพูดและการสนทนา',
     features_interview: 'การฝึกสัมภาษณ์',
@@ -211,9 +209,7 @@ const translations = {
     features_tutoring: '1:1 tutoring sessions',
     features_custom: 'Customized study plans',
     features_experts: 'Subject experts available',
-    features_practice: 'Practice test review',
-    features_skill: 'Targeted skill building',
-    features_strategy: 'Strategy sessions',
+    
     features_hsk: 'HSK levels 1-6 support',
     features_speaking: 'Speaking & conversation practice',
     features_interview: 'Interview coaching',
