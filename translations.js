@@ -54,6 +54,7 @@ const translations = {
     features_custom: 'แผนการเรียนแบบกำหนดเอง',
     features_experts: 'ผู้เชี่ยวชาญในวิชาเรียน',
     
+    features_ielts: 'การสนับสนุนทักษะ IELTS ทั้ง 4 ด้าน',
     features_hsk: 'การสนับสนุน HSK ระดับ 1-6',
     features_speaking: 'การฝึกพูดและการสนทนา',
     features_interview: 'การฝึกสัมภาษณ์',
@@ -210,6 +211,7 @@ const translations = {
     features_custom: 'Customized study plans',
     features_experts: 'Subject experts available',
     
+    features_ielts: 'IELTS all 4 skills support',
     features_hsk: 'HSK levels 1-6 support',
     features_speaking: 'Speaking & conversation practice',
     features_interview: 'Interview coaching',
