@@ -27,9 +27,9 @@ const translations = {
     nav_start_learning: 'เริ่มเรียนรู้',
 
     // ===== Hero Section =====
-    hero_eyebrow: 'แพลตฟอร์มการติวเตอร์ที่ก่อตั้งโดยนักเรียน',
-    hero_title: 'ผู้เชี่ยวชาญทางการสอบ CSCA, SAT, IELTS',
-    hero_subtitle: 'ChinaBridge Academy เป็นแพลตฟอร์มที่ก่อตั้งโดยนักเรียนที่เชื่อมต่อผู้เรียนกับครูสอนเพื่อนที่มีความสามารถและความเชี่ยวชาญจริงๆ ทั้งในด้านภาษาจีน คณิตศาสตร์ ฟิสิกส์ เคมี การเตรียม SAT IELTS และอื่นๆ',
+    hero_eyebrow: 'แพลตฟอร์มการติวที่ก่อตั้งโดยนักเรียน',
+    hero_title: 'ผู้เชี่ยวชาญทางด้าน CSCA และ IELTS',
+    hero_subtitle: 'ChinaBridge Academy เป็นแพลตฟอร์มที่ก่อตั้งโดยนักเรียนที่เชื่อมต่อผู้เรียนกับครูรุ่นพี่ที่มีความสามารถและความเชี่ยวชาญ ทั้งในด้านภาษาจีน คณิตศาสตร์ ฟิสิกส์ เคมี การเตรียม SAT IELTS และอื่นๆ',
     hero_explore: 'สำรวจหลักสูตร',
     hero_become_tutor: 'เป็นครูสอน',
     hero_experts: 'ครูสอนเชี่ยวชาญ',
@@ -41,10 +41,10 @@ const translations = {
     courses_subtitle: 'เลือกจากหลักสูตรเชี่ยวชาญของเราที่ออกแบบเพื่อช่วยคุณประสบความสำเร็จ',
     
     csca_name: 'การเตรียม CSCA',
-    csca_desc: 'เชี่ยวชาญในภาษาจีน คลาสสิก คณิตศาสตร์ ฟิสิกส์ และเคมี ด้วยการแนะนำจากผู้เชี่ยวชาญ',
+    csca_desc: 'ได้คะแนนสูงในภาษาจีน คณิตศาสตร์ ฟิสิกส์ และเคมีในภาษาจีน ด้วยการแนะนำจากผู้เชี่ยวชาญ',
     
-    sat_name: 'การติวเตรียม SAT',
-    sat_desc: 'การเตรียม SAT แบบยุทธศาสตร์ด้วยเทคนิคที่ได้รับการพิสูจน์เพื่อเพิ่มคะแนนและโอกาสเข้าวิทยาลัย',
+    ielts_name: 'การติว IELTS',
+    ielts_desc: 'การเตรียม IELTS แบบยุทธศาสตร์ด้วยเทคนิคที่ได้รับการพิสูจน์เพื่อเพิ่มคะแนนและโอกาสเข้าวิทยาลัยในราคาที่จับต้องได้',
     
     hsk_name: 'HSK/HSKK และการเตรียมมหาวิทยาลัย',
     hsk_desc: 'เก่งในการสอบความสามารถภาษาจีนและการเตรียมการสัมภาษณ์เข้ามหาวิทยาลัยจีน',
@@ -61,14 +61,14 @@ const translations = {
     features_interview: 'การฝึกสัมภาษณ์',
 
     // ===== Tutors Section =====
-    tutors_title: 'ครูสอนของเรา',
-    tutors_subtitle: 'พบกับครูสอนเพื่อนที่มีความสามารถและหลงใหลของเรา',
+    tutors_title: 'ครูของเรา',
+    tutors_subtitle: 'พบกับครูที่มีความสามารถของเรา',
     
     tutor_phoenix: 'ฟีนิกซ์',
-    tutor_phoenix_desc: 'ผู้เชี่ยวชาญด้าน CSCA - ภาษาจีน คลาสสิก คณิตศาสตร์ ฟิสิกส์ และเคมี',
+    tutor_phoenix_desc: 'ผู้เชี่ยวชาญด้าน CSCA - ภาษาจีน คณิตศาสตร์ ฟิสิกส์ และเคมี',
     
     tutor_serum: 'เซรั่ม',
-    tutor_serum_desc: 'ผู้เชี่ยวชาญด้าน IELTS - ช่วยให้นักเรียนประสบความสำเร็จในการสอบความสามารถภาษาอังกฤษ',
+    tutor_serum_desc: 'ผู้เชี่ยวชาญด้าน IELTS - ช่วยให้นักเรียนประสบความสำเร็จในการสอบภาษาอังกฤษ',
 
     // ===== Pricing Section =====
     pricing_title: 'แผนราคา',
@@ -149,28 +149,26 @@ const translations = {
     footer_contact: 'ติดต่อเรา',
 
     // ===== Highlights Section =====
-    highlight_title: 'เรียนรู้จากครูสอนเพื่อนที่มีผลสัมฤทธิ์สูง',
-    highlight_subtitle: 'ครูสอนของเราไม่ใช่แค่ผู้สอนเท่านั้น พวกเขาเป็นนักเรียนที่ประสบความสำเร็จและได้ลุยไปในเส้นทางที่คุณกำลังติดตาม',
+    highlight_title: 'เรียนรู้จากครูที่มีผลการสอบที่ดี',
+    highlight_subtitle: 'ครูของเราไม่ใช่แค่ติวเตอร์เท่านั้น พวกเขาเป็นนักเรียนที่ประสบความสำเร็จและได้เคยลุยไปในเส้นทางที่คุณกำลังมุ่งหน้าไป',
     
-    proven_success: 'ความสำเร็จที่พิสูจน์แล้ว',
-    proven_desc: 'ครูสอนสองคนได้รับการยอมรับจากมหาวิทยาลัยธุงหัว เรียนรู้จากนักเรียนที่บรรลุความเป็นเลิศในกระบวนการรับสมัครที่แข่งขันที่สุด',
+    proven_success: 'ความสำเร็จของครู',
+    proven_desc: 'ครูสอนสองคนได้รับการยอมรับจากมหาวิทยาลัยชิงหวา(อันดับ 1 ของจีน) คุณจะได้เรียนรู้จากนักเรียนที่มีความสามารถจริงๆ',
     
-    personalized_approach: 'วิธีการแบบส่วนตัว',
-    personalized_desc: 'กลุ่มครูสอนขนาดเล็กหมายความว่าคุณได้รับความสนใจและการสอนที่แท้จริงและกำหนดเอง ซึ่งปรับแต่งให้เหมาะกับความท้าทายที่เฉพาะเจาะจงของคุณ',
+    personalized_approach: 'การสอนแบบตัวต่อตัว',
+    personalized_desc: 'คุณได้รับความสนใจและการสอนที่แท้จริง ซึ่งปรับแต่งให้เหมาะกับความท้าทายที่เฉพาะเจาะจงของคุณ',
     
     recent_experience: 'ประสบการณ์ล่าสุด',
     recent_desc: 'ครูสอนของเราเพิ่งเสร็จสิ้นการสอบและกระบวนการเดียวกันที่คุณกำลังเตรียมตัว ซึ่งให้ความเข้าใจที่ใหม่สดและเชิงปฏิบัติ',
-    
-    // ===== Community Section =====
-    community_title: 'ชุมชนที่เติบโตขึ้นของเรา',
+  
     
     // ===== Tutor Profiles =====
-    book_tutoring: 'จองการติวเตอร์',
+    book_tutoring: 'จองการติว',
     expert_tutor: 'ครูสอนผู้เชี่ยวชาญ',
 
     // ===== Video Promotion =====
-    promo_title: 'ดูครูสอนของเราในการสอน',
-    promo_desc: 'ดูตัวอย่างจริงจากคร สอนผู้เชี่ยวชาญของเรา รับตัวอย่างคุณภาพของการสอนที่คุณจะได้รับ',
+    promo_title: 'ดูตัวอย่างคลิปการสอน',
+    promo_desc: 'ดูตัวอย่างจริงจากครูสอนผู้เชี่ยวชาญของเรา ตัวอย่างคุณภาพที่คุณจะได้รับ',
     videos_section_title: 'วิดีโอการสอน',
     videos_loading: 'กำลังโหลดวิดีโอ...',
   },
@@ -189,7 +187,7 @@ const translations = {
     // ===== Hero Section =====
     hero_eyebrow: 'Student-founded tutoring platform',
     hero_title: 'Excel in CSCA, SAT, HSK, HSKK & Chinese University Interviews',
-    hero_subtitle: 'ChinaBridge Academy is a student-run platform connecting learners with passionate, high-achieving peer tutors specializing in Chinese, Math, Physics, Chemistry, SAT prep, HSK/HSKK, and China\'s competitive university admissions process.',
+    hero_subtitle: 'ChinaBridge Academy is a student-run platform connecting learners with passionate, high-achieving tutors specializing in CSCA, Math, Physics, Chemistry, SAT prep, IELTS etc.',
     hero_explore: 'Explore courses',
     hero_become_tutor: 'Become a tutor',
     hero_experts: 'expert peer tutors',
@@ -203,8 +201,8 @@ const translations = {
     csca_name: 'CSCA Prep',
     csca_desc: 'Master Chinese language, classics, mathematics, physics, and chemistry with expert guidance',
     
-    sat_name: 'SAT Tutoring',
-    sat_desc: 'Strategic SAT preparation with proven techniques to boost your score and college prospects',
+    ielts_name: 'IELTS Tutoring',
+    ielts_desc: 'Strategic IELTS preparation with proven techniques to boost your score and college prospects',
     
     hsk_name: 'HSK/HSKK & University Prep',
     hsk_desc: 'Ace Chinese language proficiency exams and prepare for China\'s university interview process',
